@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script>
+	window.ladi_viewport = function () {var width = window.outerWidth > 0 ? window.outerWidth : window.screen.width;var widthDevice = width;var is_desktop = width >= 768;var content = "";if (typeof window.ladi_is_desktop == "undefined" || window.ladi_is_desktop == undefined) {window.ladi_is_desktop = is_desktop;}if (!is_desktop) {widthDevice = 420;} else {widthDevice = 1200;}content = "width=" + widthDevice + ", user-scalable=no";var scale = 1;if (!is_desktop && widthDevice != window.screen.width && window.screen.width > 0) {scale = window.screen.width / widthDevice;}if (scale != 1) {content += ", initial-scale=" + scale + ", minimum-scale=" + scale + ", maximum-scale=" + scale;}var docViewport = document.getElementById("viewport");if (!docViewport) {docViewport = document.createElement("meta");docViewport.setAttribute("id", "viewport");docViewport.setAttribute("name", "viewport");document.head.appendChild(docViewport);}docViewport.setAttribute("content", content);};window.ladi_viewport();window.ladi_fbq_data = [];window.ladi_fbq = function (track_name, conversion_name, data, event_data) {window.ladi_fbq_data.push([track_name, conversion_name, data, event_data]);};
+	</script>
+<style>
+body {
+  margin: 0;
+  background: #f5f5f5;
+  font-family: "Poppins", sans-serif;
+  line-height: 2em;
+  overflow: hidden;
+}
+
+.wrapper {
+  margin: auto;
+}
+
+.tab-wrapper {
+  text-align: center;
+  display: block;
+  margin: auto;
+}
+
+.tabs {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  background: #000c44;
+}
+
+.tab-link {
+  width: 50%;
+  margin: 0 1%;
+  list-style: none;
+  padding: 10px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 700;
+  transition: all ease 0.5s;
+  border-bottom: solid 3px rgba(255, 255, 255, 0);
+  letter-spacing: 1px;
+  font-size: 14px;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.tab-link svg {
+	width: 40px;
+	height: 40px;
+}
+
+.tab-link:hover {
+  color: #999;
+  border-color: #999;
+}
+
+.tab-link.active {
+  color: #333;
+  border-color: #333;
+}
+
+.tab-link:nth-of-type(1).active {
+  color: #fff700;
+  border-color: #fff700;
+}
+
+.tab-link:nth-of-type(2).active {
+  color: #fff700;
+  border-color: #fff700;
+}
+
+.tab-link:nth-of-type(3).active {
+  color: #EEC63B;
+  border-color: #EEC63B;
+}
+
+.content-wrapper {
+  
+}
+
+.tab-content {
+  display: none;
+  text-align: center;
+  color: #888;
+  font-weight: 300;
+  font-size: 15px;
+  opacity: 0;
+  transform: translateY(15px);
+  animation: fadeIn 0.5s ease 1 forwards;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+</style>
+</head>
+<body>
+  
+  <div class="wrapper">
+		
+	<div class="tab-wrapper">
+		<ul class="tabs">
+				<li class="tab-link active" data-tab="1">
+				VietCredit Normal</li>
+				<li class="tab-link" data-tab="2">
+				VietCredit eKYC</li>
+		</ul>
+	</div>
+
+	<div class="content-wrapper">
+
+		<div id="tab-1" class="tab-content active">
+		    <iframe src="" id="normal" width="100%" height="700px" style="overflow:hidden;width:100%"></iframe>
+		</div>
+
+		<div id="tab-2" class="tab-content">
+			<iframe src="" id="ekyc" width="100%" height="700px" style="overflow:hidden;width:100%"></iframe>
+		</div>
+	</div>
+	
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+
+	const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const transId = urlParams.get('transId');
+    const subId = urlParams.get('subId');
+    const merchant_code = urlParams.get('merchant_code');
+    const check_sum = urlParams.get('check_sum');
+	if (subId) {
+		$('#normal').attr('src', 'http://vietcredit.dangkymothe.com/?transId=' + transId +'&subId=' + subId + '&merchant_code=DAGORAS08&check_sum=' + encodeURIComponent(check_sum));
+	} else {
+		$('#normal').attr('src', 'http://vietcredit.dangkymothe.com/');
+	}
+	
+	$('.tab-link').click( function() {
+	
+	var tabID = $(this).attr('data-tab');
+	
+	$(this).addClass('active').siblings().removeClass('active');
+	
+	$('#tab-'+tabID).addClass('active').siblings().removeClass('active');
+	
+	if (tabID === '2') {
+		var tab2Src = $('#ekyc').attr('src');
+		if(tab2Src === '') {
+			if (subId) {
+				$('#ekyc').attr('src', 'http://vaytructuyen.vietcredit.vn/?transId=' + transId +'&subId=' + subId + '&merchant_code=DAGORAS08&check_sum=' + encodeURIComponent(check_sum));
+			} else {
+				$('#ekyc').attr('src', 'http://vaytructuyen.vietcredit.vn/');
+			}
+		}
+	}
+});
+</script>
+</body>
+</html>
