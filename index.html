@@ -143,9 +143,9 @@ body {
     const merchant_code = urlParams.get('merchant_code');
     const check_sum = urlParams.get('check_sum');
 	if (subId) {
-		$('#normal').attr('src', 'http://vietcredit.dangkymothe.com/?transId=' + transId +'&subId=' + subId + '&merchant_code=DAGORAS08&check_sum=' + encodeURIComponent(check_sum));
+		$('#normal').attr('src', 'http://vietcredit-normal.dangkymothe.com/?transId=' + transId +'&subId=' + subId + '&merchant_code=DAGORAS08&check_sum=' + encodeURIComponent(check_sum));
 	} else {
-		$('#normal').attr('src', 'http://vietcredit.dangkymothe.com/');
+		$('#normal').attr('src', 'http://vietcredit-normal.dangkymothe.com/');
 	}
 	
 	$('.tab-link').click( function() {
