@@ -160,9 +160,9 @@ body {
 		var tab2Src = $('#ekyc').attr('src');
 		if(tab2Src === '') {
 			if (subId) {
-				$('#ekyc').attr('src', 'http://vaytructuyen.vietcredit.vn/?transId=' + transId +'&subId=' + subId + '&merchant_code=DAGORAS11&check_sum=' + encodeURIComponent(check_sum));
+				$('#ekyc').attr('src', 'http://vaytructuyen.vietcredit.vn/?utm_source=Fis&utm_medium=viettel1&utm_campaign=FPT&utm_term=FIS_LDP01&transId=' + transId +'&subId=' + subId + '&merchant_code=DAGORAS11&check_sum=' + encodeURIComponent(check_sum));
 			} else {
-				$('#ekyc').attr('src', 'http://vaytructuyen.vietcredit.vn/');
+				$('#ekyc').attr('src', 'http://vaytructuyen.vietcredit.vn/?utm_source=Fis&utm_medium=viettel1&utm_campaign=FPT&utm_term=FIS_LDP01');
 			}
 		}
 	}
