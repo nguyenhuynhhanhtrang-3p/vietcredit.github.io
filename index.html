@@ -122,11 +122,11 @@ body {
 	<div class="content-wrapper">
 
 		<div id="tab-1" class="tab-content active">
-		    <iframe src="" id="normal" width="100%" height="700px" style="overflow:hidden;width:100%"></iframe>
+			<iframe src="" id="ekyc" width="100%" height="700px" style="overflow:hidden;width:100%"></iframe>
 		</div>
 
 		<div id="tab-2" class="tab-content">
-			<iframe src="" id="ekyc" width="100%" height="700px" style="overflow:hidden;width:100%"></iframe>
+			<iframe src="" id="normal" width="100%" height="700px" style="overflow:hidden;width:100%"></iframe>
 		</div>
 	</div>
 	
@@ -142,31 +142,35 @@ body {
     const subId = urlParams.get('subId');
     const merchant_code = urlParams.get('merchant_code');
     const check_sum = urlParams.get('check_sum');
+
 	if (subId) {
-		$('#normal').attr('src', 'http://vietcredit-normal.dangkymothe.com/?transId=' + transId +'&subId=' + subId + '&merchant_code=DAGORAS11&check_sum=' + encodeURIComponent(check_sum));
+		$('#ekyc').attr('src', 'http://vaytructuyen.vietcredit.vn/?utm_source=Fis&utm_medium=viettel1&utm_campaign=FPT&utm_term=FIS_LDP01&transId=' + transId +'&subId=' + subId + '&merchant_code=DAGORAS11&check_sum=' + encodeURIComponent(check_sum));
+		var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance 
+	    xmlhttp.open("POST", "https://103.74.122.196/api/feedback/feedback");
+	    xmlhttp.setRequestHeader("Content-Type", "application/json");
+	    xmlhttp.send(JSON.stringify({transId: transId, subId: subId, merchant_code: merchant_code, check_sum: check_sum, productName: "Vietcredit eKyc", campaignCode: "VIETCREDIT_EKYC"}));
 	} else {
-		$('#normal').attr('src', 'http://vietcredit-normal.dangkymothe.com/');
+		$('#ekyc').attr('src', 'http://vaytructuyen.vietcredit.vn/?utm_source=Fis&utm_medium=viettel1&utm_campaign=FPT&utm_term=FIS_LDP01');
 	}
-	
 	$('.tab-link').click( function() {
 	
-	var tabID = $(this).attr('data-tab');
-	
-	$(this).addClass('active').siblings().removeClass('active');
-	
-	$('#tab-'+tabID).addClass('active').siblings().removeClass('active');
-	
-	if (tabID === '2') {
-		var tab2Src = $('#ekyc').attr('src');
-		if(tab2Src === '') {
-			if (subId) {
-				$('#ekyc').attr('src', 'http://vaytructuyen.vietcredit.vn/?utm_source=Fis&utm_medium=viettel1&utm_campaign=FPT&utm_term=FIS_LDP01&transId=' + transId +'&subId=' + subId + '&merchant_code=DAGORAS11&check_sum=' + encodeURIComponent(check_sum));
-			} else {
-				$('#ekyc').attr('src', 'http://vaytructuyen.vietcredit.vn/?utm_source=Fis&utm_medium=viettel1&utm_campaign=FPT&utm_term=FIS_LDP01');
+		var tabID = $(this).attr('data-tab');
+
+		$(this).addClass('active').siblings().removeClass('active');
+
+		$('#tab-'+tabID).addClass('active').siblings().removeClass('active');
+
+		if (tabID === '2') {
+			var tab2Src = $('#normal').attr('src');
+			if(tab2Src === '') {
+				if (subId) {
+					$('#normal').attr('src', 'http://vietcredit-normal.dangkymothe.com/?transId=' + transId +'&subId=' + subId + '&merchant_code=DAGORAS11&check_sum=' + encodeURIComponent(check_sum));
+				} else {
+					$('#normal').attr('src', 'http://vietcredit-normal.dangkymothe.com/');
+				}	
 			}
 		}
-	}
-});
+	});
 </script>
 </body>
 </html>
