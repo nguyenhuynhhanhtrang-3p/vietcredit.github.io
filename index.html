@@ -113,21 +113,21 @@ body {
 	<div class="tab-wrapper">
 		<ul class="tabs">
 				<li class="tab-link active" data-tab="1">
-				VietCredit Normal
+				VietCredit eKYC
 				</li>
 				<li class="tab-link" data-tab="2">
-				VietCredit eKYC</li>
+				VietCredit Normal</li>
 		</ul>
 	</div>
 
 	<div class="content-wrapper">
 
 		<div id="tab-1" class="tab-content active">
-			<iframe src="" id="normal" width="100%" height="700px" style="overflow:hidden;width:100%"></iframe>
+			<iframe src="" id="ekyc" width="100%" height="700px" style="overflow:hidden;width:100%"></iframe>
 		</div>
 
 		<div id="tab-2" class="tab-content">
-			<iframe src="" id="ekyc" width="100%" height="700px" style="overflow:hidden;width:100%"></iframe>
+			<iframe src="" id="normal" width="100%" height="700px" style="overflow:hidden;width:100%"></iframe>
 		</div>
 	</div>
 	
@@ -145,10 +145,10 @@ body {
     const check_sum = urlParams.get('check_sum');
 
 	if (subId) {
-		$('#normal').attr('src', 'http://vietcredit-normal.dangkymothe.com/?transId=' + transId +'&subId=' + subId + '&merchant_code=DAGORAS11&check_sum=' + encodeURIComponent(check_sum));
+		$('#ekyc').attr('src', 'http://vaytructuyen.vietcredit.vn/?utm_source=Fis&utm_medium=viettel1&utm_campaign=FPT&utm_term=FIS_LDP01&transId=' + transId +'&subId=' + subId + '&merchant_code=DAGORAS11&check_sum=' + encodeURIComponent(check_sum));
 	} else {
-		$('#normal').attr('src', 'http://vietcredit-normal.dangkymothe.com/');
-	}	
+		$('#ekyc').attr('src', 'http://vaytructuyen.vietcredit.vn/?utm_source=Fis&utm_medium=viettel1&utm_campaign=FPT&utm_term=FIS_LDP01');
+	}
 	
 	$('.tab-link').click( function() {
 	
@@ -159,12 +159,12 @@ body {
 		$('#tab-'+tabID).addClass('active').siblings().removeClass('active');
 
 		if (tabID === '2') {
-			var tab2Src = $('#ekyc').attr('src');
+			var tab2Src = $('#normal').attr('src');
 			if(tab2Src === '') {
 				if (subId) {
-					$('#ekyc').attr('src', 'http://vaytructuyen.vietcredit.vn/?utm_source=Fis&utm_medium=viettel1&utm_campaign=FPT&utm_term=FIS_LDP01&transId=' + transId +'&subId=' + subId + '&merchant_code=DAGORAS11&check_sum=' + encodeURIComponent(check_sum));
+					$('#normal').attr('src', 'http://vietcredit-normal.dangkymothe.com/?transId=' + transId +'&subId=' + subId + '&merchant_code=DAGORAS11&check_sum=' + encodeURIComponent(check_sum));
 				} else {
-					$('#ekyc').attr('src', 'http://vaytructuyen.vietcredit.vn/?utm_source=Fis&utm_medium=viettel1&utm_campaign=FPT&utm_term=FIS_LDP01');
+					$('#normal').attr('src', 'http://vietcredit-normal.dangkymothe.com/');
 				}
 			}
 		}
